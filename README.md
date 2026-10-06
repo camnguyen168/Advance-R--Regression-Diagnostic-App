@@ -4,6 +4,8 @@ An interactive **R Shiny application for regression diagnostics** across linear,
 
 The project combines econometric diagnostics, simulation, visualization, model remediation, and optional AI-assisted interpretation in a unified framework built around a custom R **S3 class (`diag_lm`)**.
 
+Link to the app: https://camnguyen16.shinyapps.io/Project/
+
 ## Overview
 
 Regression models rely on assumptions concerning error structure, functional form, dependence, stationarity, and model specification. Violations of these assumptions can lead to unreliable inference or misleading conclusions.
@@ -241,28 +243,7 @@ Cov(X_it, alpha_i) ≠ 0
 
 and provides a controlled setting for comparing fixed and random effects using the Hausman test.
 
----
 
-## Robust Inference and Remediation
-
-The application distinguishes between detecting a statistical problem and responding to it.
-
-Depending on the model, users can investigate approaches such as:
-
-- HC robust standard errors
-- one-way clustered standard errors
-- variable transformations
-- nonlinear terms
-- alternative model specifications
-- fixed-effects estimation
-
-An important principle is:
-
-> Robust standard errors change statistical inference, not the underlying coefficient estimates or model specification.
-
-Therefore, model misspecification, endogeneity, or non-stationarity cannot generally be solved simply by applying robust standard errors.
-
----
 
 ## AI-Assisted Interpretation
 
