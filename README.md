@@ -2,7 +2,7 @@
 
 An interactive **R Shiny application for regression diagnostics** across linear, logistic, time-series, and panel-data models.
 
-The project combines econometric diagnostics, simulation, visualization, model remediation, and optional AI-assisted interpretation in a unified framework built around a custom R **S3 class (`diag_lm`)**.
+The project combines econometric diagnostics, simulation, visualization, model remediation, and AI-assisted interpretation in a unified framework built around a custom R **S3 class (`diag_lm`)**.
 
 Link to the app: https://camnguyen16.shinyapps.io/Project/
 
