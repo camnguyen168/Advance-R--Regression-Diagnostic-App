@@ -1,0 +1,164 @@
+---
+title: "Title"
+subtitle: "Subtitle"
+type: "Type of Paper"
+author: "Name"
+discipline: "Study Path"
+date: "today"
+studid: "Matriculation Number"
+supervisor: "Prof. Dr. Christoph Hanck"
+secondsupervisor: "Prof. Dr. Andreas Behr"
+ssemester: "1"
+estdegree_emester: "Summer Term 2019"
+abstract: "The abstract is written directly in the YAML header."
+deadline: "Deadline"
+output:
+  pdf_document:
+    keep_tex: yes
+    template: Resources/template.tex
+    fig_caption: yes
+    citation_package: biblatex
+    number_sections: true
+toc: true
+lot: true
+lof: true
+loa: true
+graphics: true
+biblio-title: References
+fontsize: 11pt
+geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
+biblio-files: Resources/references.bib 
+classoption: a4paper
+language: english
+linkcolor: black
+header-includes:
+  - \newacronym{itt}{ITT}{Intention-to-Treat} 
+  - \newacronym{iv}{IV}{Instrumental Variables} 
+  - \newacronym{sbcf}{SBCF}{Shrinkage Bayesian Causal Forest} 
+  - \newacronym{sbcf-iv}{SBCF-IV}{Shrinkage Bayesian Instrumental Variable Causal Forest} 
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      cache = FALSE)
+options(digits = 7) # default of R
+```
+
+# Rmarkdown Template
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents . For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE, fig.cap="\\label{fig:pressure} Pressure"}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. You can label the plot above by including the label `\\label{fig:pressure}` in the chunk argument `fig.cap`. A reference to the plot is then made as follows:
+
+Looking at Figure \ref{fig:pressure} makes me happy.
+
+## The YAML Header
+
+The YAML Header is at the very top of this document. It is enclosed in 3 dashes.
+Although there are already some options specified you might want to change some additional things. Here are some useful things that we have implemented for you.
+
+### language
+
+You can either set this to english or german. If the language is not specified in the YAML header it will use english e.g.:
+
+language: english
+
+language: german
+
+This variable affects mainly the headings of your output file.
+
+### linespread
+
+The default value for the linespread is 1.5. Usually this is fine and sometimes it's required. If you nevertheless want to change it you can do so by specifying the linespread variable. E.g.:
+
+linespread: 1
+
+# How Rmarkdown makes your life easy
+
+## The kable function
+
+In Empirical work it's crucial not only to present your results but also to explain your research strategy. Often times that involes creating tables to present the used data and creating tables to show your results. Creating tables (e.g. in Latex) by hand is hard and time consuming but there are a variety of packages out there that can automate this job for you. One of them is the kable package. It can produce Latex tables from a variety of R Objects.
+
+Consider the following Example: you are working on an analysis of black cherry trees and want to present n observations to the reader You can do that using the knitr::kable() function.
+
+```{r, echo=FALSE, trees}
+data(trees)
+n <- 6
+knitr::kable(trees[sample(1:nrow(trees),n),], 
+             caption = paste(n, "Observations from the trees Dataset"),
+             row.names = F,
+             col.names = c("Diameter", "Height", "Volume"))
+```
+
+Now that we have presented our data it's analysis time! Lets start with a quick call to summary().
+
+## The Stargazer package
+
+Calling summary() in a code chunk will work but this will give you quite an ugly result (just try it for yourself!). When it comes to presenting more structured objects like summaries, model results or for example correlation matrices the stargazer package is well suited.
+
+```{r, results='asis', echo=FALSE}
+stargazer::stargazer(trees, label = "summary", header=FALSE, title = "Summary")
+```
+
+Assume we want to evaluate how the height and the volume of a typical cherry tree are related. We are estimating this using OLS to estimate a simple linear model.
+
+```{r, results='asis', echo = FALSE}
+mod <- lm(Volume ~ Height, data = trees)
+stargazer::stargazer(mod,label  = "regression", title = "Regression results", header=FALSE)
+```
+
+Now that we have our model we can visualize it.
+
+```{r, echo = FALSE, fig.cap= "Dataset and regression", Regression}
+plot(trees$Volume ~ trees$Height)
+abline(mod)
+```
+\pagebreak
+
+# Listing
+
+\begin{itemize}
+  \item Hallo 
+  \item World
+\end{itemize}
+
+\pagebreak
+
+
+# Acronyms usage
+
+The \acrshort{itt} analysis ensures that all randomized participants are included, regardless of whether they adhered to the treatment protocol. We employed \acrshort{iv} estimation to address potential endogeneity in the treatment assignment. The \acrshort{sbcf} model was applied to estimate heterogeneous treatment effects across subpopulations. To account for unobserved confounding, we extended our analysis using the \acrshort{sbcf-iv} approach.
+
+\pagebreak
+
+## Citations
+
+The a *bibtex* bibliography can be used for citations. The file name of the bibliography used in this template is `references.bib`
+
+You can cite a source like this: [@Keil_2012] or @Litterman1986.
+
+A cited source will be automatically added to the end of the document.
+
+
+
+
+
+
