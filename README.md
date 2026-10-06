@@ -5,6 +5,7 @@ An interactive **R Shiny application for regression diagnostics** across linear,
 The project combines econometric diagnostics, simulation, visualization, model remediation, and optional AI-assisted interpretation in a unified framework built around a custom R **S3 class (`diag_lm`)**.
 
 Link to the app: https://camnguyen16.shinyapps.io/Project/
+
 <img width="1492" height="860" alt="image" src="https://github.com/user-attachments/assets/5fcc8f32-a2c8-47e2-831d-46d787a0dd25" />
 <img width="1508" height="756" alt="image" src="https://github.com/user-attachments/assets/967ee01d-b041-4ab7-9336-443b5c8847f3" />
 <img width="1271" height="591" alt="image" src="https://github.com/user-attachments/assets/3f90d772-77a9-49e8-8566-964408214dac" />
